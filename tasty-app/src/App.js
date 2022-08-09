@@ -1,23 +1,43 @@
 import logo from './logo.svg';
-import { Layout } from "antd";
+import { Layout, Typography } from "antd";
+import { useState } from "react";
+import LoginForm from "./components/LoginForm";
+
 const { Header, Content } = Layout;
+const { Title } = Typography;
 
 function App() {
-  return (
+    const [authed, setAuthed] = useState(false);
+
+    return (
       //1.outter curly bracket: use curly braces to embed a JavaScript expression in an attribute
       //2. inner curly bracket: obj
-      <Layout style = {{ height: "100vh"}}>
-          <Header>header</Header>
-          <Content
-              style={{
-                  padding: "50px",
-                  maxHeight: "calc(100% - 64px)",
-                  overflowY : "auto",
-              }}
-          >content</Content>
-
-      </Layout>
-  );
+        <Layout style={{ height: "100vh" }}>
+            <Header>
+                <div className="header">
+                    <Title
+                        level={2}
+                        style={{ color: "white", lineHeight: "inherit", marginBottom: 0 }}
+                    >
+                        Lai Food
+                    </Title>
+                </div>
+            </Header>
+            <Content
+                style={{
+                    padding: "50px",
+                    maxHeight: "calc(100% - 64px)",
+                    overflowY: "auto",
+                }}
+            >
+                {authed ? (
+                    <div>content placeholder</div>
+                ) : (
+                    <LoginForm onSuccess={() => setAuthed(true)} />
+                )}
+            </Content>
+        </Layout>
+    );
 }
 
 export default App;
