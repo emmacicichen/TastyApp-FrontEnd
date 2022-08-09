@@ -2,6 +2,9 @@ import logo from './logo.svg';
 import { Layout, Typography } from "antd";
 import { useState } from "react";
 import LoginForm from "./components/LoginForm";
+import MyCart from "./components/MyCart"
+import SignupForm from "./components/SignupForm"
+import FoodList from "./components/FoodList"
 
 const { Header, Content } = Layout;
 const { Title } = Typography;
@@ -19,8 +22,9 @@ function App() {
                         level={2}
                         style={{ color: "white", lineHeight: "inherit", marginBottom: 0 }}
                     >
-                        Lai Food
+                        TastyApp
                     </Title>
+                    <div>{authed ? <MyCart /> : <SignupForm />}</div>
                 </div>
             </Header>
             <Content
@@ -31,12 +35,13 @@ function App() {
                 }}
             >
                 {authed ? (
-                    <div>content placeholder</div>
+                    <FoodList />
                 ) : (
                     <LoginForm onSuccess={() => setAuthed(true)} />
                 )}
             </Content>
         </Layout>
+
     );
 }
 
